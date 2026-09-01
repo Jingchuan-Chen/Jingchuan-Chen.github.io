@@ -2,6 +2,8 @@
 
 import { ArrowDownRight, ArrowUpRight, Languages, Mail } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import newsData from '../data/news.json';
+import publicationData from '../data/publications.json';
 
 type Lang = 'en' | 'zh';
 
@@ -52,72 +54,15 @@ const research = [
   },
 ];
 
-const papers = [
-  {
-    year: '2026',
-    type: 'Preprint · Lead author',
-    title: 'Cold-stage system for Impact-initiated Contact freezing Experiments (C-ICE)',
-    authorsRest: ', U. B. Rai, K. A. McMillan, R. D. Davis, M. A. Tolbert & S. D. Brooks',
-    journal: 'EGUsphere',
-    link: 'https://doi.org/10.5194/egusphere-2026-3946',
-  },
-  {
-    year: '2024',
-    type: 'Research article · First author',
-    title: 'Decreased dust particles amplify the cloud cooling effect by regulating cloud ice formation over the Tibetan Plateau',
-    authorsRest: ', J. Xu, Z. Wu et al.',
-    journal: 'Science Advances 10, eado0885',
-    link: 'https://doi.org/10.1126/sciadv.ado0885',
-  },
-  {
-    year: '2023',
-    type: 'Research article · First author',
-    title: 'Observational evidence for the non-suppression effect of atmospheric chemical modification on the ice nucleation activity of East Asian dust',
-    authorsRest: ', Z. Wu, X. Meng et al.',
-    journal: 'Science of the Total Environment 861, 160708',
-    link: 'https://doi.org/10.1016/j.scitotenv.2022.160708',
-  },
-  {
-    year: '2021',
-    type: 'Research article · First author',
-    title: 'Size-resolved atmospheric ice-nucleating particles during East Asian dust events',
-    authorsRest: ', Z. Wu, J. Chen et al.',
-    journal: 'Atmospheric Chemistry and Physics 21, 3491–3506',
-    link: 'https://doi.org/10.5194/acp-21-3491-2021',
-  },
-];
-
-const fullPublications = [
-  ['2026', 'Cold-stage system for Impact-initiated Contact freezing Experiments (C-ICE)', 'EGUsphere preprint', '10.5194/egusphere-2026-3946', 'Jingchuan Chen; Upasna B. Rai; Kyle A. McMillan; Ryan D. Davis; Margaret A. Tolbert; Sarah D. Brooks'],
-  ['2026', 'Effects of the Biosurfactant Rhamnolipid on the hygroscopicity and cloud condensation nuclei activity (CCN) of ammonium sulfate aerosols', 'Atmospheric Research', '10.1016/j.atmosres.2026.108950', 'Wenxu Fang; Zhijun Wu; Taomou Zong; Yanting Qiu; Xiangxinyue Meng; Jingchuan Chen; Zeyu Feng; Junrui Wang; Linghan Zeng; Zheng Chen; Zirui Zhang; Yu Xie; Song Guo; Maosheng Yao; Min Hu'],
-  ['2026', 'Relative Humidity Constrains the Saturated Oxidation Capacity of Sulfate Formation', 'Environmental Science & Technology Letters', '10.1021/acs.estlett.6c00077', 'Taomou Zong; Zhijun Wu; Ye Kuang; Mengren Li; Nan Xu; Shuya Hu; Yanhong Qin; Zhuofei Du; Jing Zheng; Dongjie Shang; Yujue Wang; Fangting Gu; Yu Wang; Tianyi Tan; Yuechen Liu; Kai Qiao; Xiao Li; Xin Fang; Yao Xiao; Rongzhi Tang; Jie Chen; Yao Bai; Weizhao Xu; Hui Wang; Tiantian Wang; Yishu Zhu; Zirui Zhang; Ruizhe Shen; Jingchuan Chen; Xiangxinyue Meng; Shiyi Chen; Huabin Dong; Song Guo; Min Hu'],
-  ['2024', 'Decreased dust particles amplify the cloud cooling effect by regulating cloud ice formation over the Tibetan Plateau', 'Science Advances', '10.1126/sciadv.ado0885', 'Jingchuan Chen; Jianzhong Xu; Zhijun Wu; Xiangxinyue Meng; Yan Yu; Paul Ginoux; Paul J. DeMott; Rui Xu; Lixiang Zhai; Yafei Yan; Chuanfeng Zhao; Shao-Meng Li; Tong Zhu; Min Hu'],
-  ['2024', 'Observational Evidence of Brown Carbon Photobleaching in Urban Atmosphere at Molecular Level', 'Environmental Science & Technology Letters', '10.1021/acs.estlett.4c00647', 'Yanting Qiu; Tao Qiu; Zhijun Wu; Yanna Liu; Wenxu Fang; Ruiqi Man; Yuechen Liu; Junrui Wang; Xiangxinyue Meng; Jingchuan Chen; Dapeng Liang; Song Guo; Min Hu'],
-  ['2024', 'Particle phase state and aerosol liquid water greatly impact secondary aerosol formation: insights into phase transition and its role in haze events', 'Atmospheric Chemistry and Physics', '10.5194/acp-24-2399-2024', 'Xiangxinyue Meng; Zhijun Wu; Jingchuan Chen; Yanting Qiu; Taomou Zong; Mijung Song; Jiyi Lee; Min Hu'],
-  ['2023', 'Effects of heterogeneous reaction with NO₂ on ice nucleation activities of feldspar and Arizona Test Dust', 'Journal of Environmental Sciences', '10.1016/j.jes.2022.04.034', 'Lanxiadi Chen; Chao Peng; Jingchuan Chen; Jie Chen; Wenjun Gu; Xiaohong Jia; Zhijun Wu; Qiyuan Wang; Mingjin Tang'],
-  ['2023', 'Observational evidence for the non-suppression effect of atmospheric chemical modification on the ice nucleation activity of East Asian dust', 'Science of the Total Environment', '10.1016/j.scitotenv.2022.160708', 'Jingchuan Chen; Zhijun Wu; Xiangxinyue Meng; Cuiqi Zhang; Jie Chen; Yanting Qiu; Li Chen; Xin Fang; Yuanyuan Wang; Yinxiao Zhang; Shiyi Chen; Jian Gao; Weijun Li; Min Hu'],
-  ['2023', 'Secondary aerosol formation drives atmospheric particulate matter pollution over megacities (Beijing and Seoul) in East Asia', 'Atmospheric Environment', '10.1016/j.atmosenv.2023.119702', 'Yanting Qiu; Zhijun Wu; Ruiqi Man; Taomou Zong; Yuechen Liu; Xiangxinyue Meng; Jingchuan Chen; Shiyi Chen; Suxia Yang; Bin Yuan; Mijung Song; Changhyuk Kim; Junyoung Ahn; Limin Zeng; Jiyi Lee; Min Hu'],
-  ['2022', 'Chemical characteristics and sources of organic aerosols across the Taiwan Strait', 'Atmospheric Pollution Research', '10.1016/j.apr.2021.101312', 'Nan Xu; Min Hu; Zirui Zhang; Xiao Li; Shuya Hu; Jingchuan Chen; Zijing Zhang; Rongzhi Tang; Limin Zeng; Feng Chen; Zhifan Jin; Fang Yang; Haowu Lin; Jinsheng Chen; Yanting Chen; Mengren Li; Ronghua Zheng; Chung-Te Lee; Sheng-Hsiang Wang; Chia-Wei Lee; Chung-Shin Yuan; Chang-Tang Chang; Ken-Hui Chang; Yuanhang Zhang'],
-  ['2022', 'Ice-nucleating particles from multiple aerosol sources in the urban environment of Beijing under mixed-phase cloud conditions', 'Atmospheric Chemistry and Physics', '10.5194/acp-22-7539-2022', 'Cuiqi Zhang; Zhijun Wu; Jingchuan Chen; Jie Chen; Lizi Tang; Wenfei Zhu; Xiangyu Pei; Shiyi Chen; Ping Tian; Song Guo; Limin Zeng; Min Hu; Zamin A. Kanji'],
-  ['2021', 'Atmospheric Humic-Like Substances (HULIS) Act as Ice Active Entities', 'Geophysical Research Letters', '10.1029/2021GL092443', 'Jingchuan Chen; Zhijun Wu; Xin Zhao; Yujing Wang; Jie Chen; Yanting Qiu; Taomou Zong; Haoxuan Chen; Beibei Wang; Peng Lin; Wei Liu; Song Guo; Maosheng Yao; Limin Zeng; Heike Wex; Xiaohong Liu; Min Hu; Shao-Meng Li'],
-  ['2021', 'Ice Nucleating Particles in the Atmosphere—Progress and Challenges', 'Chinese Journal of Atmospheric Sciences', '10.3878/j.issn.1006-9895.2010.20121', 'Zhijun Wu; Jie Chen; Jingchuan Chen; Wenjun Gu; Mingjin Tang; Dianping Ding; Yan Yin; Min Hu'],
-  ['2021', 'Ice-Nucleating Particle Concentrations and Sources in Rainwater Over the Third Pole, Tibetan Plateau', 'Journal of Geophysical Research: Atmospheres', '10.1029/2020JD033864', 'Jingchuan Chen; Zhijun Wu; Guangming Wu; Xiaodong Gong; Feng Wang; Jie Chen; Guoliang Shi; Min Hu; Zhiyuan Cong'],
-  ['2021', 'Impact of aerosol–radiation interaction on new particle formation', 'Atmospheric Chemistry and Physics', '10.5194/acp-21-9995-2021', 'Gang Zhao; Yishu Zhu; Zhijun Wu; Taomou Zong; Jingchuan Chen; Tianyi Tan; Haichao Wang; Xin Fang; Keding Lu; Chunsheng Zhao; Min Hu'],
-  ['2021', 'Size-resolved atmospheric ice-nucleating particles during East Asian dust events', 'Atmospheric Chemistry and Physics', '10.5194/acp-21-3491-2021', 'Jingchuan Chen; Zhijun Wu; Jie Chen; Naama Reicher; Xin Fang; Yinon Rudich; Min Hu'],
-  ['2021', 'The particle phase state during the biomass burning events', 'Science of the Total Environment', '10.1016/j.scitotenv.2021.148035', 'Yuechen Liu; Xiangxinyue Meng; Zhijun Wu; Dandan Huang; Hongli Wang; Jie Chen; Jingchuan Chen; Taomou Zong; Xin Fang; Tianyi Tan; Gang Zhao; Shiyi Chen; Liwu Zeng; Song Guo; Xiaofeng Huang; Lingyan He; Limin Zeng; Min Hu'],
-  ['2018', 'Development, Characterization, and Validation of a Cold Stage-Based Ice Nucleation Array (PKU-INA)', 'Atmosphere', '10.3390/atmos9090357', 'Jie Chen; Xiangyu Pei; Hong Wang; Jingchuan Chen; Yishu Zhu; Mingjin Tang; Zhijun Wu'],
-];
-
-const news = [
-  { date: '28 JUL 2026', en: 'C-ICE preprint opened for discussion in EGUsphere.', zh: 'C-ICE 预印本在 EGUsphere 上线并开放讨论。', link: 'https://doi.org/10.5194/egusphere-2026-3946' },
-  { date: '2026', en: 'Serving as an Early Career Convener for “Atmospheric Aerosols and Their Interactions with Clouds, Radiation, and Climate” at AGU26.', zh: '担任 AGU26 “Atmospheric Aerosols and Their Interactions with Clouds, Radiation, and Climate” 分会的青年召集人。' },
-  { date: 'DEC 2025', en: 'Presented C-ICE at AGU25 in New Orleans.', zh: '在新奥尔良 AGU25 年会上口头报告 C-ICE 研究。' },
-  { date: 'JAN 2025', en: 'Joined Texas A&M University as a Postdoctoral Research Associate.', zh: '加入德州农工大学大气科学系，任博士后研究员。' },
-];
+const papers = publicationData.selected;
+const fullPublications = publicationData.all;
+const news = [...newsData].sort((a, b) => b.date.localeCompare(a.date));
 
 export default function Home() {
   const [language, setLanguage] = useState<Lang>('en');
   const zh = language === 'zh';
+  const latestNews = news.slice(0, 5);
+  const earlierNews = news.slice(5);
 
   useEffect(() => {
     document.documentElement.lang = zh ? 'zh-CN' : 'en';
@@ -205,9 +150,9 @@ export default function Home() {
           <details className="all-publications">
             <summary>{zh ? '发表论文完整列表' : 'Complete publication list'} <span>+</span></summary>
             <div className="full-paper-list">
-              {fullPublications.map(([year, title, journal, doi, authors]) => (
-                <a href={`https://doi.org/${doi}`} target="_blank" rel="noreferrer" key={doi}>
-                  <span>{year}</span><div><b>{title}</b><p className="full-authors">{authors.split('; ').map((author, index) => <span key={`${doi}-${author}`}>{author === 'Jingchuan Chen' ? <strong>{author}</strong> : author}{index < authors.split('; ').length - 1 ? '; ' : ''}</span>)}</p><small>{journal}</small></div><ArrowUpRight size={15} />
+              {fullPublications.map((paper) => (
+                <a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noreferrer" key={paper.doi}>
+                  <span>{paper.year}</span><div><b>{paper.title}</b><p className="full-authors">{paper.authors.map((author, index) => <span key={`${paper.doi}-${author}`}>{author === 'Jingchuan Chen' ? <strong>{author}</strong> : author}{index < paper.authors.length - 1 ? '; ' : ''}</span>)}</p><small>{paper.journal}</small></div><ArrowUpRight size={15} />
                 </a>
               ))}
             </div>
@@ -219,9 +164,17 @@ export default function Home() {
       <section id="news" className="news">
         <div className="section-heading"><p className="eyebrow">{zh ? '最新动态' : 'News & updates'}</p><h2>{zh ? '近期进展。' : 'Recent milestones.'}</h2></div>
         <div className="news-list">
-          {news.map((item) => (
-            <div className="news-item" key={item.date + item.en}><time>{item.date}</time><p>{zh ? item.zh : item.en}</p>{item.link ? <a href={item.link} target="_blank" rel="noreferrer" aria-label="Read update"><ArrowUpRight size={18} /></a> : <span />}</div>
+          {latestNews.map((item) => (
+            <div className="news-item" key={item.date + item.en}><time dateTime={item.date}>{item.displayDate}</time><p>{zh ? item.zh : item.en}</p>{item.link ? <a href={item.link} target="_blank" rel="noreferrer" aria-label="Read update"><ArrowUpRight size={18} /></a> : <span />}</div>
           ))}
+          {earlierNews.length > 0 && <details className="earlier-news">
+            <summary>{zh ? `查看更早动态（${earlierNews.length}）` : `View earlier news (${earlierNews.length})`} <span>+</span></summary>
+            <div>
+              {earlierNews.map((item) => (
+                <div className="news-item" key={item.date + item.en}><time dateTime={item.date}>{item.displayDate}</time><p>{zh ? item.zh : item.en}</p>{item.link ? <a href={item.link} target="_blank" rel="noreferrer" aria-label="Read update"><ArrowUpRight size={18} /></a> : <span />}</div>
+              ))}
+            </div>
+          </details>}
         </div>
       </section>
 
