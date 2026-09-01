@@ -154,9 +154,9 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px
   footer { flex-direction: column; }
 }
 
-.overview-figure { margin: 0; padding: 100px clamp(24px, 7vw, 112px); background: #0b2a35; color: white; }
-.overview-figure img { display: block; width: 100%; max-width: 1400px; margin: 0 auto; border: 1px solid #31515b; box-shadow: 0 28px 80px rgba(0,0,0,.22); }
-.overview-figure figcaption { display: grid; grid-template-columns: 180px minmax(0, 740px); gap: 28px; max-width: 1400px; margin: 24px auto 0; color: #b6cacc; font-size: 13px; line-height: 1.65; }
+.overview-figure { margin: 0; padding: 72px clamp(24px, 7vw, 112px); background: #0b2a35; color: white; }
+.overview-figure img { display: block; width: auto; max-width: min(100%, 1120px); max-height: 68vh; margin: 0 auto; border: 1px solid #31515b; box-shadow: 0 28px 80px rgba(0,0,0,.22); object-fit: contain; }
+.overview-figure figcaption { display: grid; grid-template-columns: 180px minmax(0, 740px); gap: 28px; max-width: 1120px; margin: 24px auto 0; color: #b6cacc; font-size: 13px; line-height: 1.65; }
 .overview-figure figcaption span { color: #d3a269; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 
 .publication-actions { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-top: 36px; }
@@ -170,6 +170,9 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 25px
 .full-paper-list a { display: grid; grid-template-columns: 62px minmax(0, 1fr) 20px; gap: 18px; align-items: start; padding: 18px 0; border-bottom: 1px solid #b8cbc8; }
 .full-paper-list a > span { color: #9b6738; font-size: 12px; font-weight: 800; }
 .full-paper-list b { display: block; color: #173b45; font-family: Georgia, serif; font-size: 16px; font-weight: 400; line-height: 1.42; }
+.full-paper-list .full-authors { margin: 8px 0 0; color: #536f75; font-size: 12px; line-height: 1.6; }
+.full-paper-list .full-authors span { color: inherit; font-size: inherit; font-weight: inherit; }
+.full-paper-list .full-authors strong { color: #173b45; font-weight: 900; }
 .full-paper-list small { display: block; margin-top: 6px; color: #5f777c; font-size: 12px; }
 
 @media (max-width: 900px) {
