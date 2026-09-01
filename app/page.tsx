@@ -13,7 +13,7 @@ const research = [
     en: 'Size-resolved East Asian dust INPs',
     zh: '东亚沙尘冰核的粒径分布',
     enBody: 'The first size-resolved measurements of airborne Asian dust INPs, linking particle diameter to INP abundance and ice-active-site density across −35 to −6 °C.',
-    zhBody: '首次对东亚沙尘事件中的大气冰核开展分粒径测量，揭示粒径对冰核浓度和表面冰活性位点密度的控制，并建立适用于 −35 至 −6 °C 的参数化。',
+    zhBody: '首次对东亚沙尘事件中的大气冰核开展分粒径测量，揭示粒径对冰核浓度和表面冰活性位点密度的影响，并建立适用于 −35 至 −6 °C 的参数化。',
     tag: 'Atmospheric Chemistry and Physics · 2021',
     link: 'https://doi.org/10.5194/acp-21-3491-2021',
     image: '/research-01-size-resolved.png',
@@ -24,7 +24,7 @@ const research = [
     en: 'Chemical aging during dust transport',
     zh: '沙尘输送过程中的化学老化',
     enBody: 'Two field campaigns traced dust over roughly 1,000 km. Integrated chemical, morphological, and freezing measurements showed that atmospheric modification did not suppress its ice-nucleating activity.',
-    zhBody: '通过两次外场观测追踪约 1,000 km 长距离输送的沙尘，结合化学组成、形貌和冻结测量，发现大气化学改性并未削弱东亚沙尘的冰核活性。',
+    zhBody: '通过两次外场观测追踪约 1,000 km 长距离输送的沙尘，结合化学组成、形貌和浸润冻结冰核测量，发现大气化学老化并未显著削弱东亚沙尘的冰核活性。',
     tag: 'Science of the Total Environment · 2023',
     link: 'https://doi.org/10.1016/j.scitotenv.2022.160708',
     image: '/research-02-aged-dust.jpg',
@@ -85,23 +85,31 @@ export default function Home() {
 
       <section id="home" className="hero">
         <div className="hero-copy">
-          <p className="eyebrow">{zh ? '大气科学 · 冰核粒子 · 气溶胶—云相互作用' : 'Atmospheric science · ice-nucleating particles · aerosol–cloud interactions'}</p>
+          <p className="eyebrow">{zh ? '气溶胶 · 冰核 · 气溶胶—云相互作用' : 'Aerosols · ice-nucleating particles · aerosol–cloud interactions'}</p>
           <h1>{zh ? '从大气粒子到' : 'From atmospheric particles'}<span>{zh ? '云冰与气候。' : 'to cloud ice and climate.'}</span></h1>
-          <p className="hero-intro">{zh ? '我研究气溶胶如何触发冰形成，以及这些微观过程如何改变云、降水与地球辐射平衡。' : 'I investigate how aerosols initiate ice formation—and how these microscopic events reshape clouds, precipitation, and Earth’s radiation balance.'}</p>
+          <div className="hero-intro">
+            <p>{zh ? '研究气溶胶如何作为冰核触发云冰形成，以及这些微观过程如何改变云、降水与地球辐射平衡。' : 'Jingchuan Chen is a Postdoctoral Research Associate at Texas A&M University. His research centers on aerosol–cloud interactions, with a particular focus on how ice-nucleating particles trigger cloud ice formation and shape cloud and climate processes. He integrates laboratory experiments, field observations, aerosol physicochemical characterization, satellite and reanalysis data, and parameterization development to uncover the factors controlling atmospheric ice nucleation and to translate these insights into improved representations of aerosol–cloud interactions.'}</p>
+            {!zh && <details className="hero-bio">
+              <summary>Read full profile <span>+</span></summary>
+              <div className="hero-bio-panel">
+                <p>Jingchuan received his Ph.D. in Environmental Sciences from Peking University in 2024. During his Ph.D., he investigated the ice-nucleating activity of East Asian dust through laboratory measurements, field observations, aerosol physicochemical characterization, parameterization development, and large-scale atmospheric analyses. His work clarified how particle size, chemical composition, atmospheric aging, and long-range transport influence the abundance and ice-nucleating properties of dust aerosols. He further integrated field observations with satellite and reanalysis data to investigate how changes in dust abundance influence cloud ice formation and radiative effects over the Tibetan Plateau.</p>
+                <p>He is particularly passionate about developing new experimental methods and quantitative approaches for aerosol research and translating fundamental scientific questions into new measurement capabilities. At Texas A&amp;M, he is extending his research to poorly constrained ice-nucleation pathways. He developed the Cold-stage system for Impact-initiated Contact freezing Experiments (C-ICE) to quantitatively investigate collision-triggered ice nucleation. His broader goal is to integrate innovative measurements, laboratory experiments, field and satellite observations, and parameterization development to improve the understanding and representation of aerosol–cloud interactions.</p>
+              </div>
+            </details>}
+          </div>
           <div className="hero-actions">
             <a className="button primary" href="#research">{zh ? '探索研究' : 'Explore research'} <ArrowDownRight size={18} /></a>
           </div>
-          <p className="affiliation">{zh ? '博士后研究员 · 德州农工大学大气科学系' : 'Postdoctoral Research Associate · Department of Atmospheric Sciences, Texas A&M University'}</p>
           <div className="top-links" aria-label="Academic profiles">
             <a href="https://scholar.google.com/citations?user=BCubDWQAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar ↗</a>
             <a href="https://orcid.org/0000-0002-5200-982X" target="_blank" rel="noreferrer">ORCID ↗</a>
-            <a href="https://github.com/JingchuanChen" target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a href="https://github.com/Jingchuan-Chen" target="_blank" rel="noreferrer">GitHub ↗</a>
             <a href="https://artsci.tamu.edu/atmos-science/contact/profiles/jingchuan-chen.html" target="_blank" rel="noreferrer">Texas A&amp;M ↗</a>
           </div>
         </div>
         <div className="hero-portrait">
           <div className="portrait-frame"><img src="/jingchuan-chen-hd.jpg" alt="Portrait of Jingchuan Chen" /></div>
-          <div className="research-note"><span>Current focus / 04</span><strong>C-ICE</strong><p>{zh ? '碰撞触发的接触冻结' : 'Impact-initiated contact freezing'}</p></div>
+          <p className="affiliation">{zh ? <><span>博士后研究员</span><span>大气科学系</span><strong>德州农工大学</strong></> : <><span>Postdoctoral Research Associate</span><span>Department of Atmospheric Sciences</span><strong>Texas A&amp;M University</strong></>}</p>
         </div>
       </section>
 
@@ -123,7 +131,6 @@ export default function Home() {
             <div className="story-side">
               <div className="story-index"><span>{item.n}</span><i /></div>
               <img className="story-figure" src={item.image} alt={item.imageAlt} />
-              <small>{zh ? '选自对应论文；可替换' : 'From the corresponding paper · replaceable'}</small>
             </div>
             <div className="story-copy">
               <p className="story-tag">{item.tag}</p>
@@ -187,7 +194,7 @@ export default function Home() {
           <div className="social-links">
             <a href="https://scholar.google.com/citations?user=BCubDWQAAAAJ&hl=en" target="_blank" rel="noreferrer">Google Scholar ↗</a>
             <a href="https://orcid.org/0000-0002-5200-982X" target="_blank" rel="noreferrer">ORCID ↗</a>
-            <a href="https://github.com/JingchuanChen" target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a href="https://github.com/Jingchuan-Chen" target="_blank" rel="noreferrer">GitHub ↗</a>
             <a href="https://artsci.tamu.edu/atmos-science/contact/profiles/jingchuan-chen.html" target="_blank" rel="noreferrer">Texas A&M ↗</a>
           </div>
         </div>
