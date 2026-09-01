@@ -8,14 +8,14 @@ export const metadata: Metadata = {
     title: 'Jingchuan Chen | Atmospheric Scientist',
     description: 'From atmospheric particles to cloud ice and climate.',
     type: 'website',
-    url: 'https://jingchuanchen.github.io',
-    images: [{ url: 'https://jingchuanchen.github.io/og.png', width: 1536, height: 1024, alt: 'Jingchuan Chen — from atmospheric particles to cloud ice and climate' }],
+    url: 'https://jingchuan-chen.github.io',
+    images: [{ url: 'https://jingchuan-chen.github.io/og.png', width: 1536, height: 1024, alt: 'Jingchuan Chen — from atmospheric particles to cloud ice and climate' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Jingchuan Chen | Atmospheric Scientist',
     description: 'From atmospheric particles to cloud ice and climate.',
-    images: ['https://jingchuanchen.github.io/og.png'],
+    images: ['https://jingchuan-chen.github.io/og.png'],
   },
 };
 
