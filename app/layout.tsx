@@ -4,6 +4,12 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Jingchuan Chen (陈景川) | Aerosol–Cloud Interactions & Ice Nucleation',
   description: 'Jingchuan Chen studies aerosol–cloud interactions, focusing on how ice-nucleating particles initiate cloud ice formation and shape cloud and climate processes.',
+  alternates: {
+    canonical: 'https://jingchuan-chen.github.io/',
+  },
+  verification: {
+    google: '7eb0_pe1c_AE6KFzbuWKNlQ9Nl7tV3hHDeE9CtgomS4',
+  },
   openGraph: {
     title: 'Jingchuan Chen (陈景川) | Aerosol–Cloud Interactions & Ice Nucleation',
     description: 'Jingchuan Chen studies aerosol–cloud interactions, focusing on how ice-nucleating particles initiate cloud ice formation and shape cloud and climate processes.',
