@@ -13,7 +13,7 @@
   --type-hero-intro: clamp(12px, 1.2vw, 24px);
   --type-affiliation: clamp(16px, 1.3vw, 24px);
   --type-research-card-title: clamp(18px, 1.25vw, 36px);
-  --type-section-title: clamp(28px, 3.1vw, 44px);
+  --type-section-title: clamp(28px, 3.1vw, 42px);
   --type-story-index: clamp(19px, 1.25vw, 25px);
   --type-story-tag: clamp(16px, 1.25vw, 20px);
   --type-story-body: clamp(19px, 1.25vw, 25px);
